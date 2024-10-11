@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Before and After</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace; /* خط الأكواد */
+            background: linear-gradient(to right, #4facfe, #00f2fe); /* خلفية زرقاء متدرجة */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            border: 2px solid black; /* إطار أسود حول المحتوى */
+            border-radius: 15px; /* زوايا مدورة */
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9); /* خلفية بيضاء مع شفافية */
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); /* ظل أكثر وضوحًا للإطار */
+            width: 90%; /* عرض مناسب للمحتوى */
+            max-width:300px; /* حد أقصى للعرض */
+            transition: transform 0.3s; /* تأثير عند التحويم */
+        }
+        .container:hover {
+            transform: scale(1.02); /* تأثير تكبير عند التحويم على الحاوية */
+        }
+        .images {
+            display: flex;
+            justify-content: center; /* توسيط الصور */
+            align-items: center; /* توسيط عمودي */
+            margin: 20px 0; /* مسافة فوق وتحت الصور */
+        }
+        img {
+            width: 250px; /* عرض الصورة */
+            height: auto; /* الحفاظ على نسبة العرض إلى الارتفاع */
+            display: none; /* إخفاء الصورة في البداية */
+            border: 2px solid #000000; /* إطار للصورة بلون متناسق */
+            border-radius: 10px; /* زوايا مدورة للصورة */
+            margin: 0 10px; /* مسافة بين الصور */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* ظل للصورة */
+        }
+        button {
+            padding: 15px 30px; /* حجم الزر */
+            border: none;
+            border-radius: 5px;
+            background-color: #278cc2; /* لون الزر */
+            color: white;
+            font-size: 18px; /* حجم النص في الزر */
+            cursor: pointer;
+            margin-top: 20px; /* مسافة فوق الزر */
+            transition: background-color 0.3s, transform 0.3s; /* تأثير عند التحويم */
+        }
+        button:hover {
+            background-color: #37abe5; /* لون الزر عند التحويم */
+            transform: scale(1.05); /* تأثير تكبير عند التحويم */
+        }
+        #textLabel {
+            font-size: 24px; /* حجم النص */
+            margin: 10px 0; /* مسافة فوق وتحت النص */
+            color: #333; /* لون النص */
+            font-weight: bold; /* جعل النص غامقًا */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="images">
+            <img id="imageLeft" src="Screenshot_2024-09-26_184029-removebg-preview (1).png" alt="ِAfter" />
+            <img id="imageRight" src="Screenshot 2024-09-26 184029.png" alt="Before" />
+        </div>
+        <div id="textLabel" style="display: none;"></div>
+        <button id="toggleButton" onclick="toggleImage()">Show Images</button>
+    </div>
+
+    <script>
+        let showingBefore = true;
+
+        function toggleImage() {
+            const beforeImage = document.getElementById('imageLeft');
+            const afterImage = document.getElementById('imageRight');
+            const button = document.getElementById('toggleButton');
+            const textLabel = document.getElementById('textLabel');
+
+            if (showingBefore) {
+                beforeImage.style.display = 'block';
+                afterImage.style.display = 'none';
+                textLabel.innerText = 'After';
+                textLabel.style.display = 'block';
+                button.innerText = 'Show Before';
+            } else {
+                beforeImage.style.display = 'none';
+                afterImage.style.display = 'block';
+                textLabel.innerText = 'Before';
+                textLabel.style.display = 'block';
+                button.innerText = 'Show After';
+            }
+            showingBefore = !showingBefore; // Toggle state
+        }
+    </script>
+</body>
+</html>

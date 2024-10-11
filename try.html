@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closing Page</title>
+    <style>
+        body {
+            background-color: #87cadf;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .folder {
+            cursor: pointer;
+            width: 150px;
+            height: 150px;
+            transition: all 1.2s ease-in-out;
+            position: relative;
+        }
+
+        .folder img {
+            width: 100%;
+            height: auto;
+            transition: all 1.2s ease-in-out;
+        }
+
+        .folder.open img {
+            transform: scale(3.5); /* تكبير الأيقونة */
+        }
+
+        .message {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-weight: bold;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200%;
+            max-width: px; /* زيادة العرض */
+            z-index: 2;
+            animation: slideOutFromFolder 0.7s ease-out;
+            font-family: 'Courier New', monospace; /* استخدام خط الأكواد */
+        }
+
+        @keyframes slideOutFromFolder {
+            from {
+                transform: scale(0.5) translate(-50%, -50%);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translate(-50%, -50%);
+                opacity: 1;
+            }
+        }
+
+        .confetti {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .confetti div {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: red;
+            animation: fall linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100vh);
+            }
+        }
+
+        /* ألوان confetti */
+        .confetti div:nth-child(odd) { background-color: #2196f3; } /* أزرق */
+        .confetti div:nth-child(even) { background-color: #ffeb3b; } /* أصفر */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="folder" id="folder" onclick="openFolder()">
+            <img src="https://img.icons8.com/color/150/000000/folder-invoices.png" alt="Yellow Folder">
+        </div>
+        <div class="message" id="message">
+            <h2>It's Not the End!</h2>
+            <p>Although I am putting an end to what I have, your path in the world of AI is still ongoing!</p>
+            <p>And I have some special gifts for you!</p>
+            <button onclick="closeMessage()">Close</button>
+        </div>
+    </div>
+
+    <div class="confetti" id="confetti"></div> <!-- confetti تمتد لكامل الصفحة -->
+
+    <script>
+        function openFolder() {
+            const folder = document.getElementById('folder');
+            folder.classList.add('open');
+
+            // إظهار الرسالة بعد فتح المجلد
+            setTimeout(() => {
+                document.getElementById('message').style.display = 'block';
+                launchConfetti();
+            }, 800);
+        }
+
+        function closeMessage() {
+            document.getElementById('message').style.display = 'none';
+            const folder = document.getElementById('folder');
+            folder.classList.remove('open');
+        }
+
+        function launchConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            confettiContainer.innerHTML = ''; // تنظيف الحاوية لتجنب التكرار
+            for (let i = 0; i < 400; i++) { // زيادة عدد confetti لتغطية الصفحة بالكامل
+                const confettiPiece = document.createElement('div');
+                confettiPiece.style.left = Math.random() * 100 + 'vw'; // تحديد الموقع العشوائي أفقياً
+                confettiPiece.style.top = Math.random() * -20 + 'vh'; // البداية من مكان أعلى من الشاشة لتجنب التراكم في الأعلى
+                confettiPiece.style.animationDuration = Math.random() * 5 + 3 + 's'; // مدة السقوط العشوائية
+                confettiPiece.style.animationDelay = Math.random() * 3 + 's'; // تأخير عشوائي لبدء السقوط
+                confettiPiece.style.opacity = Math.random(); // شفافية عشوائية
+                confettiContainer.appendChild(confettiPiece);
+            }
+        }
+    </script>
+</body>
+</html>

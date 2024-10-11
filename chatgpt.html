@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاكاة ChatGPT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            background-color: black; /* الخلفية سوداء */
+            padding: 20px;
+        }
+        .chat-box {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .output {
+            margin-top: 20px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            min-height: 100px;
+            background-color: #f9f9f9;
+        }
+        .link {
+            display: none;
+            margin-top: 20px;
+        }
+        .typing {
+            border-right: 2px solid black;
+            animation: blink 0.7s steps(1) infinite;
+        }
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+        textarea {
+            width: calc(100% - 22px);
+            height: 100px; /* ارتفاع المربع */
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            resize: none; /* منع تغيير حجم المربع */
+            overflow-y: auto; /* السماح بالتمرير العمودي */
+        }
+        button {
+            padding: 10px 15px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-box">
+        <h2> ChatGPT</h2>
+        <textarea id="userInput" placeholder="Enter text here..." rows="4">حسنا الآن اريد منك أن تعطيني كود لواجهة html بألوان مبهجة ملائمة للبرمجة  بها شعار مناسب للذكاء الاصطناعي مع عنوان البرزنتيشن(Craft the Future with Your Hands through Generative AI) ووصف له(Welcome to a unique experience! Get ready to explore the magic of artificial intelligence and engage with generative programming techniques. In this session, we'll unlock the doors to creativity and dive into a world of limitless possibilities. Let’s learn together how AI can transform our ideas into tangible realities. Join us as we craft the future together! </textarea>
+        <button onclick="startTyping()">send</button>
+        <div id="output" class="output"></div>
+        <div id="link" class="link">
+            <a href="before.html" target="_blank">I am the website link</a>
+        </div>
+    </div>
+
+    <script>
+        function startTyping() {
+            const inputElement = document.getElementById('userInput');
+            const inputText = inputElement.value || ''; // أخذ النص من المدخل
+            const generatedCode = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craft the Future with Your Hands through Generative AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: #fff;
+            text-align: center;
+        }
+        header {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .description {
+            font-size: 1.2em;
+            margin: 20px 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 0;
+        }
+        img.logo {
+            width: 150px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://via.placeholder.com/150" alt="AI Logo" class="logo">
+        <h1>Craft the Future with Your Hands through Generative AI</h1>
+    </header>
+    <main>
+        <p class="description">
+            Welcome to a unique experience! Get ready to explore the magic of artificial intelligence and engage with generative programming techniques. 
+            In this session, we'll unlock the doors to creativity and dive into a world of limitless possibilities. 
+            Let’s learn together how AI can transform our ideas into tangible realities. Join us as we craft the future together!
+        </p>
+    </main>
+    <footer>
+        &copy; 2024 Craft the Future
+    </footer>
+</body>
+</html>`;
+
+
+            const outputElement = document.getElementById('output');
+            const linkElement = document.getElementById('link');
+            outputElement.innerHTML = '';  // Clear previous content
+            linkElement.style.display = 'none';  // Hide link at the start
+            
+            let index = 0;
+            const speed = 5; // سرعة الكتابة (يمكن تعديلها)
+
+            function typeText(text, callback) {
+                if (index < text.length) {
+                    outputElement.innerHTML += text.charAt(index);
+                    index++;
+                    setTimeout(() => typeText(text, callback), speed);
+                } else {
+                    callback();
+                }
+            }
+
+            // كتابة الكود بعد الضغط على الزر
+            outputElement.classList.add('typing');
+            typeText(generatedCode, () => {
+                outputElement.classList.remove('typing');
+                linkElement.style.display = 'block';  // Show link after typing
+            });
+
+            // مسح المدخل بعد الإرسال
+            inputElement.value = '';
+        }
+    </script>
+</body>
+</html>

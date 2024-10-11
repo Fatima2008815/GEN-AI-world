@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craft the Future with Your Hands through Generative AI</title>
+
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #000000, #64b7eb);
+            color: #ffffff;
+            text-align: center;
+        }
+        nav {
+            background-color:rgba(87, 142, 177, 0.8);
+            padding: 0;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-left: 10px;
+            height: 35px;
+        }
+        nav img {
+            height: 35px;
+            margin-right: 5px;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1em;
+            margin: 0;
+            display: none;
+        }
+        nav a:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #ffffff;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropbtn {
+            background-color: rgba(98, 186, 240, 0.8);
+            color: white;
+            padding: 5px 10px;
+            font-size: 1.1em;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: rgba(67, 146, 195, 0.8);
+            min-width: 100px;
+            z-index: 1;
+            right: 0;
+            padding: 5px 0;
+        }
+        .dropdown-content a {
+            display: block;
+            padding: 8px;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+            border-top: 1px solid #000;
+            border-color: rgba(0, 0, 0, 0.5);
+            font-size: 1.05em;
+        }
+        .dropdown-content a:first-child {
+            border-top: none;
+        }
+        .dropdown-content a:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .show { 
+            display: block;
+        }
+        header {
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        
+        footer {
+            margin-top: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 10px 0;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1em;
+            font-weight: bold;
+        }
+        img.logo-rect {
+            width: 120px !important;
+            height: auto !important;
+        }
+        .gen-ai-text {
+            font-family: 'Courier New', Courier, monospace;
+            color: #000000;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        h2 {
+            font-family: 'Courier New', Courier, monospace;
+            margin-bottom: 40px;
+            font-size: 40px;
+            padding: 20px;
+            margin-left: 50px; /* المسافة من اليسار */
+    margin-right: 50px; /* المسافة من اليمين */
+
+        }
+        .icon-container {
+            display: flex;
+            justify-content: center; /* لضبط الرموز في الوسط */
+            align-items: center; /* لمركزية الرموز رأسياً */
+            width: 80%;
+            margin: 20px auto; /* لإضافة مسافة فوق وتحت */
+            flex-wrap: wrap; /* للسماح بتوزيع الرموز بشكل أنيق */
+        }
+        .icon {
+            font-size: 80px; /* حجم الأيقونة */
+            transition: transform 0.3s; /* تأثير عند التحويم */
+            cursor: pointer;
+            margin: 0 70px; /* زيادة المسافة بين الرموز */
+        }
+        .icon:hover {
+            transform: scale(1.2); /* تكبير الأيقونة عند التحويم */
+        }
+        .description {
+            font-weight: bold; /* جعل النص سميك */
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.4em; /* زيادة حجم النص */
+            margin-left: 60px; /* المسافة من اليسار */
+         margin-right: 60px; /* المسافة من اليمين */
+
+          
+        }
+    </style>
+    <script>
+        function toggleDropdown() {
+            const dropdownContent = document.querySelector('.dropdown-content');
+            const dropbtn = document.querySelector('.dropbtn');
+            dropdownContent.classList.toggle('show');
+            if (dropdownContent.classList.contains('show')) {
+                dropbtn.style.transform = 'rotate(90deg)';
+                dropbtn.classList.add('active');
+            } else {
+                dropbtn.style.transform = 'rotate(0deg)';
+                dropbtn.classList.remove('active');
+            }
+        }
+
+        window.onclick = function(event) {
+            const dropdownContent = document.querySelector('.dropdown-content');
+            const dropbtn = document.querySelector('.dropbtn');
+            if (!event.target.matches('.dropbtn')) {
+                if (dropdownContent.classList.contains('show')) {
+                    dropdownContent.classList.remove('show');
+                    dropbtn.style.transform = 'rotate(0deg)';
+                    dropbtn.classList.remove('active');
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <nav>
+        <div class="logo-container">
+            <img src="logo 1.png" alt="Square Logo" class="logo-square">
+            <span class="gen-ai-text">GEN AI world</span>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn" onclick="toggleDropdown()">☰</button>
+            <div class="dropdown-content">
+                <a href="index.html">The Beginning</a>
+                <a href="others.html">AI World</a>
+                <a href="smart-apps.html">Smart Websites</a>
+                <a href="build-code.html">Build Your Code</a>
+                <a href="contact.html">Behind the Scenes</a>
+                <a href="try.html">The End</a>
+            </div>
+        </div>
+    </nav>
+    <h2>Behind the Scenes: Exploring the Fun of Production</h2>
+    
+    <br>
+    <div class="icon-container">
+        <div class="icon" onclick="window.location.href='#'">&#128279;</div>
+    <div class="icon" onclick="window.location.href='background.html'">&#11088;</div>
+    <div class="icon" onclick="window.location.href='chatgpt.html'">&#127760;</div> <!-- رمز شبكة الإنترنت -->
+        
+    </div>
+    <br>
+    
+    <p class="description">We have now arrived at the <strong>Behind the Scenes</strong> section, the part that adds a touch of fun before the end! Here, we will explore the amazing journey behind the production of this show. Join us as we unveil the magic and creativity happening outside the spotlight!</p>
+   
+    <footer>
+        &copy; 2024 Al-Sha'thaa bint Jabir, grade 11/2...
+    </footer>
+</body>
+</html>
